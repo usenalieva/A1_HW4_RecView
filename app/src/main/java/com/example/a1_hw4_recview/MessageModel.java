@@ -1,10 +1,9 @@
 package com.example.a1_hw4_recview;
 
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.Serializable;
 
-public class MessageModel implements Parcelable {
+public class MessageModel implements Serializable {
     private String name;
     private String message;
 
@@ -13,22 +12,6 @@ public class MessageModel implements Parcelable {
         this.message = message;
     }
 
-    protected MessageModel(Parcel in) {
-        name = in.readString();
-        message = in.readString();
-    }
-
-    public static final Creator<MessageModel> CREATOR = new Creator<MessageModel>() {
-        @Override
-        public MessageModel createFromParcel(Parcel in) {
-            return new MessageModel(in);
-        }
-
-        @Override
-        public MessageModel[] newArray(int size) {
-            return new MessageModel[size];
-        }
-    };
 
     public String getName() {
         return name;
@@ -38,14 +21,4 @@ public class MessageModel implements Parcelable {
         return message;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(name);
-        parcel.writeString(message);
-    }
 }
